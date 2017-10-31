@@ -11,7 +11,7 @@ export default class FeedScreen extends Component {
   render () {
     return (
       <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+        <Image style={{ alignItems: 'center' }} source={require('../Images/launch-icon.png')} resizeMode='stretch' />
         <ScrollView style={styles.container}>
           <View style={styles.centered}>
             <Text style={{ color: 'white'}}>Place Details Screen</Text>

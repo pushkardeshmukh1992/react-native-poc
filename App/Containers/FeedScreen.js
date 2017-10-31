@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, Image, View, TouchableOpacity, ListView, ActivityIndicator } from 'react-native'
+import { Button, ScrollView, Text, Image, View, TouchableOpacity, ListView, ActivityIndicator } from 'react-native'
 import DevscreensButton from '../../ignite/DevScreens/DevscreensButton.js'
 import ApiEndPoints from '../Services/ApiEndPoints.js'
 
@@ -54,7 +54,11 @@ export default class FeedScreen extends Component {
               dataSource={this.state.dataSource}
               renderRow={(rowData) =>
               <View>
-                  <Image source={{ uri: rowData.image ? rowData.image : '../images/ir.png'}} style={{ height: 50, width: 50 }} resizeMode='stretch' />
+                  <Button
+                    onPress={() => this.props.navigation.navigate('PlaceDetailsScreen', { name: rowData.businessName})}
+                    title="Details"
+                  />
+                <Image source={{ uri: rowData.image ? rowData.image : '../images/ir.png'}} style={{ height: 50, width: 50 }} resizeMode='stretch' />
                 <Text style={{ color: 'white' }}>{rowData.businessName}, {rowData.address}</Text>
               </View>}
             />

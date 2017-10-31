@@ -1,6 +1,7 @@
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import LaunchScreen from '../Containers/LaunchScreen'
 import FeedScreen from '../Containers/FeedScreen'
+import PlaceDetailsScreen from '../Containers/PlaceDetailsScreen'
 
 import styles from './Styles/NavigationStyles'
 
@@ -16,10 +17,37 @@ import styles from './Styles/NavigationStyles'
 //   }
 // })
 
-const MainScreenNavigator = TabNavigator({
-  LaunchScreen: { screen: LaunchScreen },
-  FeedScreen: { screen: FeedScreen },
-}, {
+const FeedTab = StackNavigator({
+  FeedHome: {
+    screen: FeedScreen,
+    path: '/',
+    navigationOptions: {
+      title: 'Feed',
+    },
+  },
+  PlaceDetailsScreen: {
+    screen: PlaceDetailsScreen,
+    path: '/feed/:name',
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.name}`,
+    }),
+  },
+});
+
+const MainScreenNavigator = TabNavigator(
+  {
+    LaunchScreen:{ 
+      screen: LaunchScreen, 
+      path: '/' ,
+    },
+    FeedTab: { 
+      screen: FeedTab, 
+      path: 'feed' ,
+      navigationOptions: {
+        tabBarLabel: 'Feed',
+      },
+    },
+  }, {
     initialRouteName: 'LaunchScreen',
     tabBarPosition: 'bottom',
 });

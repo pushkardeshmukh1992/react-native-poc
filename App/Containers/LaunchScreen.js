@@ -13,7 +13,10 @@ export default class LaunchScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-    }
+      latitude: null,
+      longitude: null,
+      error: null,
+    };
   }
   
   logout () {
@@ -21,6 +24,20 @@ export default class LaunchScreen extends Component {
     Cookie.clear().then(() => {
       this.setState({ token: null })
     })
+  }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
   }
 
   render () {
@@ -60,6 +77,13 @@ export default class LaunchScreen extends Component {
               redirectUrl='http://localhost:3000/auth/instagram/callback'
               onLoginSuccess={(token) => this.setState({ token })}
             />
+          </View>
+
+          <View style={{ height: 50 }}></View>
+          <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>Latitude: {this.state.latitude}</Text>
+            <Text>Longitude: {this.state.longitude}</Text>
+            {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
           </View>
 
           {/* <DevscreensButton /> */}

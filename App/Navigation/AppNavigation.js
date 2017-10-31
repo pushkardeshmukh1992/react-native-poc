@@ -50,6 +50,16 @@ const MainScreenNavigator = TabNavigator(
   }, {
     initialRouteName: 'LaunchScreen',
     tabBarPosition: 'bottom',
+    tabBarOptions: {
+      activeTintColor: '#fff',
+      labelStyle: {
+        fontSize: 7,
+      },
+      showIcon: true,
+      style: {
+        backgroundColor: '#24a8e8',
+      },
+    }
 });
 
 export default MainScreenNavigator

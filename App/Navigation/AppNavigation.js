@@ -18,10 +18,22 @@ import styles from './Styles/NavigationStyles'
 
 const MainScreenNavigator = TabNavigator({
   LaunchScreen: { screen: LaunchScreen },
-  FeedScreen: { screen: FeedScreen },
+  Collections: { screen: FeedScreen },
+  Feed : { screen: FeedScreen },
+  Account : { screen: FeedScreen },
 }, {
     initialRouteName: 'LaunchScreen',
     tabBarPosition: 'bottom',
+    tabBarOptions: {
+      activeTintColor: '#fff',
+      labelStyle: {
+        fontSize: 7,
+      },
+      showIcon: true,
+      style: {
+        backgroundColor: '#24a8e8',
+      },
+    }
 });
 
 export default MainScreenNavigator

@@ -27,7 +27,7 @@ const FeedTab = StackNavigator({
   },
   PlaceDetailsScreen: {
     screen: PlaceDetailsScreen,
-    path: '/feed/:name',
+    path: '/feed/:name/:id',
     navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.params.name}`,
     }),

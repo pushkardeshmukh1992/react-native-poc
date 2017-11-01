@@ -17,13 +17,13 @@ export default class FeedScreen extends Component {
   }
 
   componentDidMount() {
-    return ApiEndPoints.getBusinessListing()
+    return ApiEndPoints.getDestinations()
       .then((response) => response.json())
       .then((responseJson) => {
         let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.setState({
           isLoading: false,
-          dataSource: ds.cloneWithRows(responseJson.status),
+          dataSource: ds.cloneWithRows(responseJson),
         }, function () {
           // do something with new state
         });
@@ -47,7 +47,7 @@ export default class FeedScreen extends Component {
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
           <View style={styles.centered}>
-            <Text style={{ color: 'black'}}>Feed Screen</Text>
+            <Text style={{ color: 'black'}}>Feed Screens</Text>
           </View>
           <View style={{ flex: 1, paddingTop: 10 }}>
             <ListView
@@ -56,16 +56,16 @@ export default class FeedScreen extends Component {
                 <View style={{ flex: 1, flexDirection: 'row',  borderColor: '#CECECE', borderStyle: 'solid', borderBottomWidth: 1.0, paddingVertical: 16 }}>
                   <Image source={{ uri: rowData.image ? rowData.image : '../Images/ir.png' }} style={{ flex: 2, height: 80, width: 50, borderRadius: 100, marginHorizontal: 10 }} />
                   <View style={{ flexDirection: 'column', flex: 6 }}>
-                    <Text style={{ fontSize: 20, color: 'black', paddingHorizontal: 8 }}>{rowData.businessName}</Text>
-                    <Text style={{ color: '#aaa', fontSize: 18, letterSpacing: 2, paddingHorizontal: 8 }}> {rowData.verticalType.toUpperCase()}</Text>
-                    <Text numberOfLines={1} style={{ color: 'black', paddingHorizontal: 8 }}> {rowData.address}</Text>
+                    <Text style={{ fontSize: 20, color: 'black', paddingHorizontal: 8 }}>{rowData.name}</Text>
+                    <Text style={{ color: '#aaa', fontSize: 18, letterSpacing: 2, paddingHorizontal: 8 }}> {rowData.type.toUpperCase()}</Text>
+                    {/* <Text numberOfLines={1} style={{ color: 'black', paddingHorizontal: 8 }}> {rowData.address}</Text> */}
                     <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' }}>
                       <Image source={ require('../Images/Emoticons-05-512.png') } style={{ width: 20, height: 20, alignSelf: 'flex-end' }} />
                       <Text style={{ fontWeight: 'bold', color: 'black', paddingHorizontal: 8 }}> Crowded </Text>
                       <Text style={{ fontWeight: '300', alignSelf: 'flex-end', fontSize: 10, color: 'grey', paddingHorizontal: 8 }}> 23 minutes ago </Text>
                     </View>
                     <Button
-                      onPress={() => this.props.navigation.navigate('PlaceDetailsScreen', { name: rowData.businessName })}
+                      onPress={() => this.props.navigation.navigate('PlaceDetailsScreen', { id: rowData._id, name: rowData.name })}
                       title="Details"
                     />
                   </View>

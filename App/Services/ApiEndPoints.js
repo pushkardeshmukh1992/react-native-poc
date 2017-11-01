@@ -15,6 +15,24 @@ function getBusinessListing() {
     })
 }
 
+function getDestinations() {
+    // return fetch('https://facebook.github.io/react-native/movies.json')
+    var url = 'http://139.59.14.228:8080/destination'
+    return fetch(url, {
+        method: 'GET'
+    })
+}
+
+function getDestination(id) {
+    // return fetch('https://facebook.github.io/react-native/movies.json')
+    var url = 'http://139.59.14.228:8080/destination/' + id
+    return fetch(url, {
+        method: 'GET'
+    })
+}
+
 export default {
-    getBusinessListing: getBusinessListing
+    getBusinessListing: getBusinessListing,
+    getDestinations: getDestinations,
+    getDestination: getDestination
 }

@@ -46,28 +46,27 @@ export default class FeedScreen extends Component {
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
-          <View style={styles.centered}>
-            <Text style={{ color: 'black'}}>Feed Screens</Text>
-          </View>
           <View style={{ flex: 1, paddingTop: 10 }}>
             <ListView
               dataSource={this.state.dataSource}
               renderRow={(rowData) =>
                 <View style={{ flex: 1, flexDirection: 'row',  borderColor: '#CECECE', borderStyle: 'solid', borderBottomWidth: 1.0, paddingVertical: 16 }}>
-                  <Image source={{ uri: rowData.image ? rowData.image : '../Images/ir.png' }} style={{ flex: 2, height: 80, width: 50, borderRadius: 100, marginHorizontal: 10 }} />
+                  <Image source={{ uri: rowData.image ? rowData.image : '../Images/ir.png' }} style={{ flex: 3, height: 110, width: 50, borderRadius: 100, marginHorizontal: 10 }} />
                   <View style={{ flexDirection: 'column', flex: 6 }}>
                     <Text style={{ fontSize: 20, color: 'black', paddingHorizontal: 8 }}>{rowData.name}</Text>
-                    <Text style={{ color: '#aaa', fontSize: 18, letterSpacing: 2, paddingHorizontal: 8 }}> {rowData.type.toUpperCase()}</Text>
+                    <Text style={{ color: '#aaa', fontSize: 16, paddingHorizontal: 4 }}> {rowData.type.toUpperCase()}</Text>
                     {/* <Text numberOfLines={1} style={{ color: 'black', paddingHorizontal: 8 }}> {rowData.address}</Text> */}
-                    <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'flex-start', paddingHorizontal: 8, paddingVertical: 8, justifyContent: 'space-between' }}>
                       <Image source={ require('../Images/Emoticons-05-512.png') } style={{ width: 20, height: 20, alignSelf: 'flex-end' }} />
-                      <Text style={{ fontWeight: 'bold', color: 'black', paddingHorizontal: 8 }}> Crowded </Text>
-                      <Text style={{ fontWeight: '300', alignSelf: 'flex-end', fontSize: 10, color: 'grey', paddingHorizontal: 8 }}> 23 minutes ago </Text>
+                      <Text style={{ fontWeight: 'bold', color: 'black' }}> Stunning Today </Text>
+                      <Text style={{ fontWeight: '300', alignSelf: 'flex-end', fontSize: 10, color: 'grey' }}> 23 minutes ago </Text>
                     </View>
-                    <Button
-                      onPress={() => this.props.navigation.navigate('PlaceDetailsScreen', { id: rowData._id, name: rowData.name })}
-                      title="Details"
-                    />
+                    <View style={{ paddingHorizontal: 8 }}>
+                      <Button
+                        onPress={() => this.props.navigation.navigate('PlaceDetailsScreen', { id: rowData._id, name: rowData.name })}
+                        title="Details"
+                      />
+                    </View>
                   </View>
               </View>}
             />
